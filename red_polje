@@ -1,6 +1,6 @@
 
 struct que{
-    telement pacijent[10000];
+    telement klijent[10000];
     int front,rear;
 };
 
@@ -21,14 +21,14 @@ bool IsEmptyQ(que *R){
 }
     
 telement FrontQ(que *R){
-    return R->pacijent[R->front];
+    return R->klijent[R->front];
 }
 
 void EnQueueQ(telement p, que *R){
     int n;
     if(R->rear == 9999) n=0;
     else n = R->rear+1;
-    R->pacijent[n] = p;
+    R->klijent[n] = p;
     R->rear = n;
 }
 
