@@ -1,6 +1,6 @@
 
 struct qu{
-    telement pacijent;
+    telement klijent;
     qu *sljedeci;
 };
 
@@ -23,12 +23,12 @@ bool IsEmptyQ(que *r){
   
 telement FrontQ(que *r){
     if(IsEmptyQ(r)) cout << "Red je prazan!" << endl;
-    else return r->front->sljedeci->pacijent;
+    else return r->front->sljedeci->klijent;
 }
     
 void EnQueueQ(telement p, que *r){
     qu *novi = new qu;
-    novi->pacijent = p;
+    novi->klijent = p;
     novi->sljedeci = NULL;
     r->rear->sljedeci = novi;
     r->rear = novi;
