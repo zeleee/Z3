@@ -5,7 +5,7 @@
 using namespace std;
 
 struct telement{
-	int ai, bi, ci, di, ei;
+	int ai, bi, ci, di;
     string ime_prezime;
     char spol;
     short d, m, g;
