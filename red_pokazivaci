@@ -1,44 +1,41 @@
-#include<iostream>
-using namespace std;
 
-struct tdatum{
-	 int dan,mjesec, godina;
+struct qu{
+    telement pacijent;
+    qu *sljedeci;
 };
-struct tmusterija{
-	char ime[8];
-	char prezime[8];
-	tdatum datum;
-	char spol;
-	int ai,bi,ci,di;
-};
-struct telement{
-	tpacijent musterija;
-	telement *sljedeci;
-};
-struct tred{
-	telement *front ,*rear;
-};
-typedef tred queue;
-typedef telement* element;
 
-tpacijent frontQ(queue *Q){
-	return Q->front->sljedeci->musterija;
+struct que{
+    qu *front,*rear;
+};
+
+que *InitQ(que *r){
+    r = new que;
+    qu *novi = new qu;
+    novi->sljedeci = NULL;
+    r->front = novi;
+    r->rear = novi;
+    return r;
 }
-void enqueueQ(tmusterija x, queue *Q){
-    Q->rear->sljedeci=new telement;
-	Q->rear=Q->rear->sljedeci;
-	Q->rear->sljedeci=NULL;
-	Q->rear->musterija=x;
+
+bool IsEmptyQ(que *r){
+    return r->rear == r->front;
+    }
+  
+telement FrontQ(que *r){
+    if(IsEmptyQ(r)) cout << "Red je prazan!" << endl;
+    else return r->front->sljedeci->pacijent;
 }
-void dequeueQ(queue *Q){
-	element pom=Q->front;
-	Q->front=pom->sljedeci;
-	delete pom;
+    
+void EnQueueQ(telement p, que *r){
+    qu *novi = new qu;
+    novi->pacijent = p;
+    novi->sljedeci = NULL;
+    r->rear->sljedeci = novi;
+    r->rear = novi;
 }
-void initQ(queue *Q){
-	Q->front=new telement;
-	Q->rear=Q->front;
-}
-bool IsEmptyQ(queue *Q){
-	return (Q->rear==Q->front)?  1:0;
+    
+void DeQueueQ(que *r){
+    qu *brisi = r->front;
+    r->front = r->front->sljedeci;
+    delete brisi;
 }
